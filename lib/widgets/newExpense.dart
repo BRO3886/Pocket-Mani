@@ -50,7 +50,7 @@ class _NewExpState extends State<NewExp> {
             ),
             FlatButton(
               onPressed: submitData,
-              child: Text('Add Expense', style: TextStyle(color: Colors.green)),
+              child: Text('Add Expense', style: TextStyle(color: Theme.of(context).accentColor)),
             ),
           ],
         ),
