@@ -13,44 +13,72 @@ class ExpenseList extends StatelessWidget {
       margin: EdgeInsets.only(top: 18),
       child: Container(
         height: 500,
-        child: ListView.builder(
-          itemBuilder: (ctx, index) {
-            return Card(
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.all(8),
-                    margin: EdgeInsets.all(4),
-                    child: Text(
-                      '₹ ${expenses[index].amount.toStringAsFixed(2)}',
-                      style: TextStyle(fontSize: 18, color: Theme.of(context).accentColor),
+        child: expenses.isEmpty
+            ? Container(
+                height: 50,
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      'Uh Oh! You haven\'t added any expenses yet.\nClick \'+\' to add an expense.',
+                      style: Theme.of(context).textTheme.body1,
+                      textAlign: TextAlign.center,
                     ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(8),
-                    margin: EdgeInsets.all(4),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          expenses[index].title,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                        Text(
-                          DateFormat('EEE, d/M/y').format(expenses[index].date),
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
+                    SizedBox(
+                      height: 15,
                     ),
-                  )
-                ],
+                    Image.asset('assets/images/confused.png',
+                        width: 72, height: 72),
+                  ],
+                ),
+              )
+            : ListView.builder(
+                itemBuilder: (ctx, index) {
+                  return Container(
+                    padding: EdgeInsets.all(6),
+                    child: Card(
+                      elevation: 0.5,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.all(8),
+                            margin: EdgeInsets.all(4),
+                            child: Text(
+                              '₹ ${expenses[index].amount.toStringAsFixed(2)}',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Theme.of(context).accentColor),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(8),
+                            margin: EdgeInsets.all(4),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  expenses[index].title,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
+                                SizedBox(height: 5,),
+                                Text(
+                                  DateFormat('EEE, d/M/y')
+                                      .format(expenses[index].date),
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                itemCount: expenses.length,
               ),
-              elevation: 0.1,
-            );
-          },
-          itemCount: expenses.length,
-        ),
       ),
     );
   }

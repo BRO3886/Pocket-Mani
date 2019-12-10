@@ -3,6 +3,7 @@ import 'package:pocket_mani/widgets/newExpense.dart';
 import './widgets/graph.dart';
 import './models/expense.dart';
 import './widgets/expenseList.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,10 +34,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   final List<Expense> userExpensesList = [
+    /*
     Expense(id: '1', title: 'Chips', amount: 20, date: DateTime.now()),
     Expense(id: '2', title: 'Stationery', amount: 400, date: DateTime.now()),
     Expense(id: '3', title: 'Pizza', amount: 129, date: DateTime.now()),
-    Expense(id: '4', title: 'FC', amount: 30, date: DateTime.now()),
+    Expense(id: '4', title: 'FC', amount: 30, date: DateTime.now()),*/
   ];
   void _addNewTransaction(String title, double amount){
     final newExp = Expense(title: title, date: DateTime.now(), amount: amount,id: '123');
@@ -46,23 +48,23 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
   
-  
   void _showBottomSheetMenu(BuildContext ctx){
     showModalBottomSheet(context: ctx,builder: (_){
       return NewExp(_addNewTransaction);
     }); 
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title,style: Theme.of(context).textTheme.title,),
         centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
       body: Container(
+        //color: Colors.grey[300],
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

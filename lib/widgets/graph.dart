@@ -9,9 +9,10 @@ class Graph extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(6),
       child: Card(
         child: Text('Graph'),
-        elevation: 3,
+        elevation: 0.5,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(graphRadius)),
       ),
