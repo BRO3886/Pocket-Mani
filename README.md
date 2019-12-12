@@ -1,8 +1,13 @@
 # pocket_mani
 
-A new Flutter project.
+An app to manage your expenses.
+A work in progress.
 
-## Getting Started
+##TODO:
+    - add database
+    - add animations
+    - add oauth from google
+    - different graphs for weekly, monthly etc
 
 This project is a starting point for a Flutter application.
 
