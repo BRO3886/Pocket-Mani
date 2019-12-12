@@ -19,9 +19,6 @@ class Graph extends StatelessWidget {
           totalSum += recentExpenses[i].amount;
         }
       }
-      print(DateFormat.E().format(weekDay));
-      print(totalSum);
-
       return {
         'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalSum
@@ -37,7 +34,6 @@ class Graph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(groupedExpenseValues);
     return Container(
       width: double.infinity,
       height: 300,

@@ -15,7 +15,7 @@ class Bar extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          Text('₹ ${amount.toStringAsFixed(0)}'),
+          FittedBox(child: Text('₹ ${amount.toStringAsFixed(0)}')),
           SizedBox(
             height: 5,
           ),
