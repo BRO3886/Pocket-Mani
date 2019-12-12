@@ -4,15 +4,16 @@ import 'package:intl/intl.dart';
 
 class ExpenseList extends StatelessWidget {
   final List<Expense> expenses;
+  final Function deleteExp;
 
-  ExpenseList(this.expenses);
+  ExpenseList(this.expenses, this.deleteExp);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 18),
       child: Container(
-        height: 435,
+        height: 470,
         child: expenses.isEmpty
             ? Container(
                 height: 50,
@@ -57,7 +58,15 @@ class ExpenseList extends StatelessWidget {
                         ),
                         subtitle: Text(DateFormat('EEE, d/M/y')
                             .format(expenses[index].date)),
-                        trailing: IconButton(icon: Icon(Icons.delete),onPressed: (){},),
+                        trailing: IconButton(
+                          icon: Icon(
+                            Icons.delete,
+                            color: Theme.of(context).errorColor,
+                          ),
+                          onPressed: () {
+                            deleteExp(expenses[index].id);
+                          },
+                        ),
                       ),
                     ),
                   );

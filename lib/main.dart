@@ -10,11 +10,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      darkTheme: ThemeData(primarySwatch: Colors.green,primaryColorDark: Colors.black38,brightness: Brightness.dark),
+      darkTheme: ThemeData(
+          primarySwatch: Colors.green,
+          primaryColorDark: Colors.black38,
+          brightness: Brightness.dark),
       title: 'Expense Tracker',
       theme: ThemeData(
         primarySwatch: Colors.green,
-        //backgroundColor: Colors.grey[50],
+        backgroundColor: Colors.white,
       ),
       home: MyHomePage(title: 'Pocket Mani'),
     );
@@ -32,18 +35,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Expense> userExpensesList = [
-    /*
-    Expense(id: '1', title: 'Chips', amount: 20, date: DateTime.now()),
-    Expense(id: '2', title: 'Stationery', amount: 400, date: DateTime.now()),
-    Expense(id: '3', title: 'Pizza', amount: 129, date: DateTime.now()),
-    Expense(id: '4', title: 'FC', amount: 30, date: DateTime.now()),*/
   ];
-  void _addNewTransaction(String title, double amount) {
-    final newExp =
-        Expense(title: title, date: DateTime.now(), amount: amount, id: '123');
+  void _addNewTransaction(String title, double amount, DateTime date) {
+    final newExp = Expense(
+        title: title,
+        date: date,
+        amount: amount,
+        id: DateTime.now().toString());
 
     setState(() {
       userExpensesList.add(newExp);
+    });
+  }
+
+  void _deleteTransaction(String id) {
+    setState(() {
+      userExpensesList.removeWhere((exp) => exp.id == id);
     });
   }
 
@@ -63,7 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -80,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Graph(_getRecentTransactions()),
-              ExpenseList(userExpensesList),
+              ExpenseList(userExpensesList, _deleteTransaction),
             ],
           ),
         ),
