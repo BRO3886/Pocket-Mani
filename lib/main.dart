@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      darkTheme: ThemeData(primarySwatch: Colors.green, primaryColorDark: Colors.black38, brightness: Brightness.dark),
+      darkTheme: ThemeData(primarySwatch: Colors.green,primaryColorDark: Colors.black38,brightness: Brightness.dark),
       title: 'Expense Tracker',
       theme: ThemeData(
         primarySwatch: Colors.green,
@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(

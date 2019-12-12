@@ -23,7 +23,7 @@ class Graph extends StatelessWidget {
         'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalSum
       };
-    });
+    }).reversed.toList();
   }
 
   double get spending {
@@ -45,16 +45,26 @@ class Graph extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.all(8),
           padding: EdgeInsets.all(8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: groupedExpenseValues.map((data) {
-              return Bar(
-                amount: data['amount'],
-                label: data['day'],
-                percentOfTotal:
-                    spending == 0 ? 0.0 : (data['amount'] as double) / spending,
-              );
-            }).toList(),
+          child: Column(
+            children: <Widget>[
+              Text('Last 7 days', textAlign: TextAlign.center,),
+              SizedBox(height: 7,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: groupedExpenseValues.map((data) {
+                  return Flexible(
+                    fit: FlexFit.tight,
+                    child: Bar(
+                      amount: data['amount'],
+                      label: data['day'],
+                      percentOfTotal: spending == 0
+                          ? 0.0
+                          : (data['amount'] as double) / spending,
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
           ),
         ),
       ),

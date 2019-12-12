@@ -33,47 +33,31 @@ class ExpenseList extends StatelessWidget {
               )
             : ListView.builder(
                 itemBuilder: (ctx, index) {
-                  return Container(
-                    padding: EdgeInsets.only(left: 4, right: 4),
+                  return Padding(
+                    padding: EdgeInsets.fromLTRB(6, 6, 6, 0),
                     child: Card(
-                      color: Theme.of(context).cardColor,
                       elevation: 0.5,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.all(8),
-                            margin: EdgeInsets.all(4),
-                            child: Text(
-                              '₹ ${expenses[index].amount.toStringAsFixed(2)}',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Theme.of(context).accentColor),
-                            ),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          radius: 30,
+                          backgroundColor: Theme.of(ctx).accentColor,
+                          foregroundColor: Theme.of(ctx).cardColor,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 3),
+                            child: FittedBox(
+                                child: Text('₹ ${expenses[index].amount}')),
                           ),
-                          Container(
-                            padding: EdgeInsets.all(8),
-                            margin: EdgeInsets.all(4),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  expenses[index].title,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                                SizedBox(height: 5,),
-                                Text(
-                                  DateFormat('EEE, d/M/y')
-                                      .format(expenses[index].date),
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
+                        ),
+                        title: Text(
+                          '${expenses[index].title}',
+                          style: Theme.of(ctx).textTheme.title,
+                        ),
+                        subtitle: Text(DateFormat('EEE, d/M/y')
+                            .format(expenses[index].date)),
+                        trailing: IconButton(icon: Icon(Icons.delete),onPressed: (){},),
                       ),
                     ),
                   );

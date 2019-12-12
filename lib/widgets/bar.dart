@@ -15,19 +15,21 @@ class Bar extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          FittedBox(child: Text('₹ ${amount.toStringAsFixed(0)}')),
+          Container(
+              height: 18,
+              child: FittedBox(child: Text('₹ ${amount.toStringAsFixed(0)}'))),
           SizedBox(
             height: 5,
           ),
           Container(
-            height: 200,
+            height: 180,
             width: 10,
             child: Stack(
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey[100], width: 0.5),
-                      color: Colors.grey[50],
+                      color: Colors.grey[100],
                       borderRadius: BorderRadius.circular(20)),
                 ),
                 FractionallySizedBox(
