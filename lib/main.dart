@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _showBottomSheetMenu(BuildContext ctx) {
     showModalBottomSheet(
+        backgroundColor: Theme.of(ctx).primaryColor,
         context: ctx,
         builder: (_) {
           return NewExp(_addNewTransaction);
