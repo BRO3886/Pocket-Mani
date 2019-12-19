@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     setState(() {
       userExpensesList.add(newExp);
+      userExpensesList.sort((a,b) => b.date.compareTo(a.date));
     });
   }
 
