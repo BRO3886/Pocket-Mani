@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showBottomSheetMenu(context),
-        tooltip: 'Increment',
+        tooltip: 'Add Expense',
         child: Icon(Icons.add),
       ),
     );
