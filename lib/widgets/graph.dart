@@ -36,7 +36,6 @@ class Graph extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 300,
       margin: EdgeInsets.only(top: 12, bottom: 12),
       padding: EdgeInsets.all(6),
       child: Card(

@@ -12,43 +12,45 @@ class Bar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Container(
-              height: 18,
-              child: FittedBox(child: Text('₹${amount.toStringAsFixed(0)}'))),
-          SizedBox(
-            height: 5,
-          ),
-          Container(
-            height: 180,
-            width: 10,
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[100], width: 0.5),
-                      color: Colors.grey[100],
-                      borderRadius: BorderRadius.circular(20)),
-                ),
-                FractionallySizedBox(
-                  heightFactor: percentOfTotal,
-                  child: Container(
+    return LayoutBuilder(
+      builder: (ctx, constr) {
+        return Column(
+          children: <Widget>[
+            Container(
+                height: 15,
+                child: FittedBox(child: Text('₹${amount.toStringAsFixed(0)}'))),
+            SizedBox(
+              height: 5,
+            ),
+            Container(
+              height: 180,
+              width: 10,
+              child: Stack(
+                children: <Widget>[
+                  Container(
                     decoration: BoxDecoration(
-                        color: Theme.of(context).accentColor,
+                        border: Border.all(color: Colors.grey[100], width: 0.5),
+                        color: Colors.grey[100],
                         borderRadius: BorderRadius.circular(20)),
                   ),
-                )
-              ],
+                  FractionallySizedBox(
+                    heightFactor: percentOfTotal,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).accentColor,
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 4,
-          ),
-          Text(label),
-        ],
-      ),
+            SizedBox(
+              height: 4,
+            ),
+            FittedBox(child: Text(label)),
+          ],
+        );
+      },
     );
   }
 }

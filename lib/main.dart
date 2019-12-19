@@ -10,14 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      darkTheme: ThemeData(
-          primarySwatch: Colors.green,
-          primaryColorDark: Colors.black38,
-          brightness: Brightness.dark),
+      debugShowCheckedModeBanner: false,
+      darkTheme: ThemeData.dark(),
       title: 'Expense Tracker',
       theme: ThemeData(
-        primarySwatch: Colors.green,
-        backgroundColor: Colors.white,
+        primarySwatch: Colors.teal,
       ),
       home: MyHomePage(title: 'Pocket Mani'),
     );
@@ -34,8 +31,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Expense> userExpensesList = [
-  ];
+  AppBar appBar(Color color) {
+    return AppBar(
+      title: Text(
+        'Pocket Mani',
+        style: TextStyle(color: color),
+      ),
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+    );
+  }
+
+  final List<Expense> userExpensesList = [];
   void _addNewTransaction(String title, double amount, DateTime date) {
     final newExp = Expense(
         title: title,
@@ -71,22 +79,28 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: Theme.of(context).textTheme.title,
-        ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
+      appBar: appBar(Theme.of(context).textTheme.title.color),
       body: Container(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Graph(_getRecentTransactions()),
-              ExpenseList(userExpensesList, _deleteTransaction),
+              Container(
+                  height: (MediaQuery.of(context).size.height -
+                          appBar(Theme.of(context).textTheme.title.color)
+                              .preferredSize
+                              .height -
+                          MediaQuery.of(context).padding.top) *
+                      0.40,
+                  child: Graph(_getRecentTransactions())),
+              Container(
+                  height: (MediaQuery.of(context).size.height -
+                          appBar(Theme.of(context).textTheme.title.color)
+                              .preferredSize
+                              .height -
+                          MediaQuery.of(context).padding.top) *
+                      0.60,
+                  child: ExpenseList(userExpensesList, _deleteTransaction)),
             ],
           ),
         ),

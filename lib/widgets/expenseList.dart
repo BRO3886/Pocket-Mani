@@ -13,7 +13,6 @@ class ExpenseList extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 18),
       child: Container(
-        height: 470,
         child: expenses.isEmpty
             ? Container(
                 height: 50,
